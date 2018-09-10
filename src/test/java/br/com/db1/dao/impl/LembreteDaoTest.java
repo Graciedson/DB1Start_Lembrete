@@ -20,16 +20,16 @@ public class LembreteDaoTest extends AbstractTestCase {
 
 	@Test
 	public void findAllTest() {
-		Query queryCidade = manager.createNativeQuery("DELETE FROM Cidade");
+		Query queryCidade = manager.createNativeQuery("DELETE FROM Lembrete");
 		queryCidade.executeUpdate();
 
-		Query queryUf = manager.createNativeQuery("DELETE FROM Uf");
+		Query queryUf = manager.createNativeQuery("DELETE FROM Lembrete");
 		queryUf.executeUpdate();
 		Assert.assertTrue(dao.findAll().size() == 0);
 
-		Uf uf = new Uf();
-		uf.setNome("PP");
-		manager.persist(uf);
+		Lembrete lembra = new Lembrete();
+		lembra.setLembrete("Compra");
+		manager.persist(lembra);
 
 		Assert.assertTrue(dao.findAll().size() > 0);
 
@@ -42,38 +42,38 @@ public class LembreteDaoTest extends AbstractTestCase {
 
 	@Test
 	public void findByNameTest() {
-		Query queryCidade = manager.createNativeQuery("DELETE FROM Cidade");
-		queryCidade.executeUpdate();
+		Query queryLembrete = manager.createNativeQuery("DELETE FROM Lembrete");
+		queryLembrete.executeUpdate();
 
-		Query queryUf = manager.createNativeQuery("DELETE FROM Uf where nome = :pNome");
-		queryUf.setParameter("pNome", "PP");
+		Query queryLembrate = manager.createNativeQuery("DELETE FROM Uf where lembrete = :pLembrete");
+		queryUf.setParameter("pLembrete", "Compra");
 		queryUf.executeUpdate();
-		Assert.assertTrue(dao.findByName("PP").size() == 0);
+		Assert.assertTrue(dao.findByName("Compra").size() == 0);
 
-		Uf uf = new Uf();
-		uf.setNome("PP");
-		manager.persist(uf);
+		Lembrete lembra = new Lembrete();
+		lembra.setLembrete("Compra");
+		manager.persist(lembra);
 
-		Assert.assertTrue(dao.findByName("PP").size() == 1);
+		Assert.assertTrue(dao.findByName("Compra").size() == 1);
 	}
 
 	@Test
 	public void saveTest() {
-		Query queryCidade = manager.createNativeQuery("DELETE FROM Cidade");
-		queryCidade.executeUpdate();
+		Query queryLembrete = manager.createNativeQuery("DELETE FROM Lembrete");
+		queryLembrete.executeUpdate();
 
-		Query queryUf = manager.createNativeQuery("DELETE FROM Uf");
-		queryUf.executeUpdate();
+		Query queryLembrete = manager.createNativeQuery("DELETE FROM Lembrete");
+		queryLembrete.executeUpdate();
 		Assert.assertTrue(dao.findAll().size() == 0);
 
-		Uf uf = new Uf();
-		uf.setNome("PP");
-		dao.save(uf);
+		Lembrete lembra = new Lembrete();
+		lembra.setLembrete("Compra");
+		dao.save(lembra);
 
 		Assert.assertTrue(dao.findAll().size() == 1);
 		
-		uf.setNome("RR");
-		dao.save(uf);
+		lembrete.setLembrete("Compra");
+		dao.save(lembrete);
 		Assert.assertTrue(dao.findAll().size() == 1);
 
 
@@ -81,16 +81,16 @@ public class LembreteDaoTest extends AbstractTestCase {
 
 	@Test
 	public void deleteTest() {
-		Query queryCidade = manager.createNativeQuery("DELETE FROM Cidade");
-		queryCidade.executeUpdate();
+		Query queryLembrete = manager.createNativeQuery("DELETE FROM Lembrete");
+		queryLembrete.executeUpdate();
 
-		Query queryUf = manager.createNativeQuery("DELETE FROM Uf");
-		queryUf.executeUpdate();
+		Query queryLembrete = manager.createNativeQuery("DELETE FROM Lembrete");
+		queryLembrete.executeUpdate();
 		Assert.assertTrue(dao.findAll().size() == 0);
 
-		Uf uf = new Uf();
-		uf.setNome("PP");
-		dao.save(uf);
+		Lembrete lembra = new Lembrete();
+		lembra.setLembrete("Compra");
+		dao.save(lembra);
 
 		Assert.assertTrue(dao.findAll().size() == 1);
 		
